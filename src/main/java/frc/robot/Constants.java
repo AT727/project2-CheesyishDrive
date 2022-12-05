@@ -10,10 +10,10 @@ public final class Constants {
     // public static final double kTrackScrubFactor = 1.0; // Tune me!
 
     //can spark and drive
-    public static final int kLeftDriveMasterId = 11;
-    public static final int kLeftDriveSlaveId = 12;
-    public static final int kRightDriveMasterId = 13;
-    public static final int kRightDriveSlaveId = 14;
+    public static final int kLeftDriveMasterId = 3; //all ids are prone to change
+    public static final int kLeftDriveSlaveId = 4;
+    public static final int kRightDriveMasterId = 1;
+    public static final int kRightDriveSlaveId = 2;
     public static final double kDriveVoltageRampRate = 0.0;
 
     //control board
@@ -28,4 +28,6 @@ public final class Constants {
     //kinematics
     public static final double kTrackScrubFactor = 1.0469745223;
     public static final double kDriveWheelTrackWidthInches = 28; //prone to change
+
+    //dayum a lot of stuff is prone to change 
 }
