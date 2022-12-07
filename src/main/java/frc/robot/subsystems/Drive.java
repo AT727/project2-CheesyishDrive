@@ -16,7 +16,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 
 public class Drive extends SubsystemBase {
   
-  private final LazySparkMax mLeftMaster, mRightMaster, mLeftSlave, mRightSlave;
+  private final LazySparkMax mLeftMaster, mRightMaster, mLeftSlave, mLeftSlave2, mRightSlave, mRightSlave2;
   private boolean mIsBrakeMode;
   private DriveControlState mDriveControlState;
   private PeriodicIO mPeriodicIO;
@@ -33,11 +33,17 @@ public class Drive extends SubsystemBase {
     mLeftSlave = SparkMaxFactory.createPermanentSlaveSparkMax(Constants.kLeftDriveSlaveId, mLeftMaster);
     configureSpark(mLeftSlave, true, false);
 
+    mLeftSlave2 = SparkMaxFactory.createPermanentSlaveSparkMax(Constants.kLeftDriveSlaveId, mLeftMaster);
+    configureSpark(mLeftSlave2, true, false);
+
     mRightMaster = SparkMaxFactory.createDefaultSparkMax(Constants.kRightDriveMasterId);
     configureSpark(mRightMaster, false, true);
 
-    mRightSlave = SparkMaxFactory.createPermanentSlaveSparkMax(Constants.kRightDriveSlaveId, mRightMaster);
+    mRightSlave = SparkMaxFactory.createPermanentSlaveSparkMax(Constants.kRightDriveSlaveId2, mRightMaster);
     configureSpark(mRightSlave, false, false);
+
+    mRightSlave2 = SparkMaxFactory.createPermanentSlaveSparkMax(Constants.kRightDriveSlaveId2, mRightMaster);
+    configureSpark(mRightSlave2, false, false);
   }
 
   private void configureSpark(LazySparkMax sparkMax, boolean left, boolean master) {
