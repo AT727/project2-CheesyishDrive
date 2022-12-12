@@ -16,7 +16,7 @@ import com.revrobotics.CANSparkMax.IdleMode;
 
 public class Drive extends SubsystemBase {
   
-  private final LazySparkMax mLeftMaster, mRightMaster, mLeftSlave, mLeftSlave2, mRightSlave, mRightSlave2;
+  private final LazySparkMax mLeftMaster, mRightMaster, mLeftSlave1, mLeftSlave2, mRightSlave1, mRightSlave2;
   private boolean mIsBrakeMode;
   private DriveControlState mDriveControlState;
   private PeriodicIO mPeriodicIO;
@@ -30,17 +30,17 @@ public class Drive extends SubsystemBase {
     mLeftMaster = SparkMaxFactory.createDefaultSparkMax(Constants.kLeftDriveMasterId);
     configureSpark(mLeftMaster, true, true);
 
-    mLeftSlave = SparkMaxFactory.createPermanentSlaveSparkMax(Constants.kLeftDriveSlaveId, mLeftMaster);
-    configureSpark(mLeftSlave, true, false);
+    mLeftSlave1 = SparkMaxFactory.createPermanentSlaveSparkMax(Constants.kLeftDriveSlaveId1, mLeftMaster);
+    configureSpark(mLeftSlave1, true, false);
 
-    mLeftSlave2 = SparkMaxFactory.createPermanentSlaveSparkMax(Constants.kLeftDriveSlaveId, mLeftMaster);
+    mLeftSlave2 = SparkMaxFactory.createPermanentSlaveSparkMax(Constants.kLeftDriveSlaveId2, mLeftMaster);
     configureSpark(mLeftSlave2, true, false);
 
     mRightMaster = SparkMaxFactory.createDefaultSparkMax(Constants.kRightDriveMasterId);
     configureSpark(mRightMaster, false, true);
 
-    mRightSlave = SparkMaxFactory.createPermanentSlaveSparkMax(Constants.kRightDriveSlaveId2, mRightMaster);
-    configureSpark(mRightSlave, false, false);
+    mRightSlave1 = SparkMaxFactory.createPermanentSlaveSparkMax(Constants.kRightDriveSlaveId1, mRightMaster);
+    configureSpark(mRightSlave1, false, false);
 
     mRightSlave2 = SparkMaxFactory.createPermanentSlaveSparkMax(Constants.kRightDriveSlaveId2, mRightMaster);
     configureSpark(mRightSlave2, false, false);
@@ -97,10 +97,12 @@ public synchronized void setBrakeMode(boolean shouldEnable) {
       mIsBrakeMode = shouldEnable;
       IdleMode mode = shouldEnable ? IdleMode.kBrake : IdleMode.kCoast;
       mRightMaster.setIdleMode(mode);
-      mRightSlave.setIdleMode(mode);
+      mRightSlave1.setIdleMode(mode);
+      mRightSlave2.setIdleMode(mode);
 
       mLeftMaster.setIdleMode(mode);
-      mLeftSlave.setIdleMode(mode);
+      mLeftSlave1.setIdleMode(mode);
+      mLeftSlave2.setIdleMode(mode);
 
   }
 }
